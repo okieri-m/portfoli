@@ -1,0 +1,164 @@
+@charset "utf-8";
+$light-green: #BFE5E8;
+$dark-green: #2B6990;
+
+
+// レスポンシブブレイクポイント
+$pc: 1024px; 
+$tab: 1100px; 
+$sp: 768px;
+@mixin pc {
+    @media (max-width: ($pc)) {
+        @content;
+    }
+    }
+    @mixin tab {
+    @media (max-width: ($tab)) {
+        @content;
+    }
+    }
+    @mixin sp {
+    @media (max-width: ($sp)) {
+        @content;
+    }
+    }
+// タイトル
+.section_title{
+    text-align: center;
+    padding-top: 80px;
+    .jp-title {
+        letter-spacing: 2.4px;
+        color: $dark-green;
+    }
+    .en-h2title {
+        font-size: 32px;
+        letter-spacing: 4.8px;
+        margin-top: 5px;
+    }
+}
+
+
+.wrapper {
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 60px 80px;
+    @include sp{
+        padding: 0 20px;
+        padding-bottom: 80px;
+    }
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    background-color: rgb(255 255 255 / 50%);
+    padding-left: 60px;
+    @include sp{
+        padding-left: 20px;
+        height: 60px;
+        position: relative;
+    }
+    .header_sp-menubtn{
+        display: none;
+        @include sp{
+            display: block;
+        }
+    }
+    .header-logo{
+        width: 80px;
+        @include sp{
+            width: 60px;
+        }
+    }
+    .header_nav-lists{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        @include sp{
+            gap: 30px;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            background-color: rgb(255 255 255);
+            z-index: 10;
+        }
+        li{
+            position: relative;
+            &::after {
+                position: absolute;
+                left: 0;
+                content: '';
+                width: 100%;
+                height: 2px;
+                background: $dark-green;
+                bottom: -8px;
+                transform: scale(0, 1);
+                transform-origin: center top; /*変形（アンダーラインの伸長）の原点がaタグ（各メニュー）の右端*/
+                transition: transform 0.3s;   /*変形の時間*/
+                }
+                .pc-contactLink{
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    background-color: $dark-green;
+                    padding: 0 60px 0 50px;
+                    transition: all 0.3s;   /*変形の時間*/
+                    color: #fff;
+                    
+                    @include sp{
+                        display: none;
+                    }
+                    &::after{
+                        content: none;
+                    }
+                    &:hover{
+                        background-color: rgba(43, 105, 144, 80%);
+                    }
+                }
+                .sp-contactLink{
+                    display: none;
+                    @include sp{
+                        display: block;
+                        width: 60px;
+                        padding-left: 20px;
+                    }
+                }
+                &:hover::after {
+                transform: scale(1, 1); /*ホバー後、x軸方向に1（相対値）伸長*/
+                }
+                &:last-child:hover::after{
+                    transform: scale(0, 0);
+                }
+            a{
+                color: $dark-green;
+            }
+        }
+    }
+}
+.btn{
+    height: 60px;
+    margin: auto;
+    width: 300px;
+    border-radius: 50px;
+    background-color: $dark-green;
+    transition: 0.5s;
+    &:hover{
+    background-color: rgba(43, 105, 144, 0.8);
+
+    }
+    a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        height: inherit;
+        padding: 0 20px;
+    }
+}
+
+
